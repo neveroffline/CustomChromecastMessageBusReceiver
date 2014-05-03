@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Chromecast Receiver with a Custom Bus</title>
+    <style type="text/css">
+        *
+        {
+            color: white;
+        }
+    </style>
+    <script src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+</head>
+<body>
+    <div>Send input to the custom Bus...</div>
+    <script type="text/javascript">
+		(function () {
+			var mgr;
+			var bus;
+			window.onload = function () {
+				mgr = cast.receiver.CastReceiverManager.getInstance();
+				// customize your namespace below AFTER urn:x-cast:
+				bus = mgr.getCastMessageBus('urn:x-cast:amo.cccustombus.sayhi', cast.receiver.CastMessageBus.MessageType.JSON);
+				// make sure you call start() anytime after setting a custom bus
+				mgr.start();
+// more at https://developers.google.com/cast/docs/reference/receiver/cast.receiver.CastMessageBus
+			}
+		})();
+   </script>
+</body>
+</html>
